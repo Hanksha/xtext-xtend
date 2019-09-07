@@ -1645,5 +1645,32 @@
                menuGroupId="org.eclipse.jdt.ui.java">
             <enablement></enablement>
          </commonWizard>
+         <navigatorContent
+               id="org.eclipse.xtend.ide.navigator.xtendFileContent"
+               name="Xtend File Content"
+               contentProvider="org.eclipse.xtend.ide.XtendExecutableExtensionFactory:org.eclipse.xtend.ide.navigator.XtendFileContentProvider"
+               labelProvider="org.eclipse.xtend.ide.XtendExecutableExtensionFactory:org.eclipse.xtend.ide.navigator.XtendFileLabelProvider">
+               <enablement>
+                     <and>
+                         <instanceof
+                               value="org.eclipse.core.resources.IFile">
+                         </instanceof>
+                         <test
+                               property="org.eclipse.core.resources.extension" value="xtend">
+                         </test> 
+                     </and>
+               </enablement>
+         </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding
+               viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+               <includes>
+                      <contentExtension
+                            pattern="org.eclipse.xtend.ide.navigator.xtendFileContent">
+                      </contentExtension>
+               </includes>
+         </viewerContentBinding>
    </extension>
 </plugin>
